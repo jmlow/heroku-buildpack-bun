@@ -1,0 +1,11 @@
+{
+  "name": "bun-buildpack-test-app",
+  "version": "0.0.1",
+  "description": "bun buildpack integration test app",
+  "engines": {
+    "bun": "1.2.2"
+  },
+  "scripts": {
+    "start": "bun run index.js"
+  }
+}
