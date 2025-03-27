@@ -1,8 +1,11 @@
-source "https://rubygems.org"
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
 
 gem 'heroku_hatchet'
-gem 'rspec-retry'
+gem 'parallel_split_test'
+gem 'rake'
 gem 'rspec-expectations'
+gem 'rspec-retry'
+gem 'rubocop'
 gem 'sem_version'
-gem "parallel_split_test"
-gem "rake"

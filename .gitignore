@@ -3,3 +3,5 @@
 repos/*
 .idea
 .build
+
+.vscode/settings.json
