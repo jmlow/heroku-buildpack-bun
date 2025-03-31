@@ -283,9 +283,6 @@ summarize_build() {
 	meta_set "node-modules-size" "$(measure_size)"
 }
 
-meta_set "build-step" "install-metrics-plugin"
-install_plugin "${BP_DIR}" "${BUILD_DIR}"
-
 meta_set "build-step" "summarize"
 header "Build succeeded!" | output "${LOG_FILE}"
 mcount "compile"
