@@ -127,17 +127,13 @@ list_bun_config | output "${LOG_FILE}"
 export BUN_CACHE_FOLDER
 
 install_bins() {
-	local bun_engine bun_version package_manager
+	local bun_engine bun_version
 
 	bun_engine=$(read_json "${BUILD_DIR}/package.json" ".engines.bun")
-	package_manager=$(read_json "${BUILD_DIR}/package.json" ".packageManager")
 
 	meta_set "bun-version-request" "${bun_engine}"
-	meta_set "package-manager-request" "${package_manager}"
 
 	echo "engines.bun (package.json):   ${bun_engine:-unspecified}"
-
-	[[ -n ${package_manager} ]] && echo "packageManager (package.json): $(echo "${package_manager}" | cut -d "+" -f 1)"
 
 	echo ""
 
@@ -206,30 +202,23 @@ restore_cache | output "${LOG_FILE}"
 
 build_dependencies() {
 	local cache_status start
-	local has_bun_lock has_bun_engine has_bun_package_manager
+	local has_bun_lock has_bun_engine
 
 	cache_status="$(get_cache_status "${CACHE_DIR}")"
 	start=$(nowms)
 
 	if [[ -f "${BUILD_DIR}/package.json" ]]; then
-		[[ -f "${BUILD_DIR}/bun.lockb" ]] && has_bun_lock=true || has_bun_lock=false
+		[[ -f "${BUILD_DIR}/bun.lock" || -f "${BUILD_DIR}/bun.lockb" ]] && has_bun_lock=true || has_bun_lock=false
+
 		local bun_engine
 		bun_engine=$(read_json "${BUILD_DIR}/package.json" ".engines.bun")
 		[[ -n ${bun_engine} ]] && has_bun_engine=true || has_bun_engine=false
-
-		local package_manager package_manager_check
-		package_manager=$(read_json "${BUILD_DIR}/package.json" ".packageManager")
-		package_manager_check=$(echo "${package_manager}" | grep "^bun@" || true)
-		[[ -n ${package_manager_check} ]] && has_bun_package_manager=true || has_bun_package_manager=false
 
 		if ${has_bun_lock}; then
 			echo "Bun lockfile (bun.lockb) detected"
 		fi
 		if ${has_bun_engine}; then
 			echo "Bun version specified in engines"
-		fi
-		if ${has_bun_package_manager}; then
-			echo "Bun specified as package manager"
 		fi
 
 		local dependencies
