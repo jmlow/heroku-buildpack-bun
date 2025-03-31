@@ -19,12 +19,12 @@ get_platform() {
 }
 
 create_default_env() {
-    export BUN_CONFIG_LOGLEVEL="${BUN_CONFIG_LOGLEVEL:-error}"
-    export BUN_MODULES_CACHE="${BUN_MODULES_CACHE:-true}"
-    export BUN_ENV="${BUN_ENV:-production}"
-    export BUN_VERBOSE="${BUN_VERBOSE:-false}"
-    export BUN_INSTALL_PRODUCTION="${BUN_INSTALL_PRODUCTION:-true}"
-    export BUN_SKIP_MODULES_CHECK="${BUN_SKIP_MODULES_CHECK:-false}"
+	export BUN_CONFIG_LOGLEVEL="${BUN_CONFIG_LOGLEVEL:-error}"
+	export BUN_MODULES_CACHE="${BUN_MODULES_CACHE:-true}"
+	export BUN_ENV="${BUN_ENV:-production}"
+	export BUN_VERBOSE="${BUN_VERBOSE:-false}"
+	export BUN_INSTALL_PRODUCTION="${BUN_INSTALL_PRODUCTION:-true}"
+	export BUN_SKIP_MODULES_CHECK="${BUN_SKIP_MODULES_CHECK:-false}"
 }
 
 list_bun_config() {
