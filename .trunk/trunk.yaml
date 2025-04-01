@@ -29,7 +29,7 @@ runtimes:
 lint:
   enabled:
     - actionlint@1.7.7
-    - checkov@3.2.392
+    - checkov@3.2.394
     - git-diff-check
     - markdownlint@0.44.0
     - osv-scanner@2.0.0
@@ -39,7 +39,7 @@ lint:
     - shellcheck@0.10.0
     - shfmt@3.6.0
     - taplo@0.9.3
-    - trufflehog@3.88.18
+    - trufflehog@3.88.20
     - yamllint@1.37.0
 actions:
   disabled:
